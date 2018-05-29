@@ -18,7 +18,11 @@ func Init(e *echo.Echo, conf *config.Config, db *gorm.DB) {
 	baseController := &controller.BaseController{Conf: conf, Service: baseService}
 
 	attachmentController := &controller.AttachmentController{Base: baseController}
+	areaController := &controller.AreaController{Base: baseController}
 
-	e.POST("/attachment/upload", attachmentController.Upload)
+	apiGroup := e.Group("/api")
+	apiGroup.POST("/attachment/upload", attachmentController.Upload)
+	apiGroup.GET("/area/:id", areaController.GetAreaByID)
+	apiGroup.GET("/areas", areaController.GetAreas)
 
 }

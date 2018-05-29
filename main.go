@@ -59,7 +59,7 @@ func main() {
 		c.JSON(http.StatusOK, controller.BaseResponseJSON{
 			Success: false,
 			Code:    controller.STATUS_ERROR,
-			Message: err.Error(),
+			Message: "url=" + c.Request().RequestURI + ", " + err.Error(),
 		})
 	}
 

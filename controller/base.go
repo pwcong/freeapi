@@ -36,15 +36,15 @@ func BaseResponse(c echo.Context, success bool, code int, message string, payloa
 
 }
 
-type Page struct {
-	Data      []interface{} `json:"data"`
-	PageSize  int           `json:"page_size"`
-	PageNo    int           `json:"page_no"`
-	TotalSize int           `json:"total_size"`
-	TotalNo   int           `json:"total_no"`
-}
+func ResolvePageParameter(pageNo int, pageSize int) (int, int) {
 
-type PageForm struct {
-	PageSize int `json:"page_size" form:"page_size" query:"page_size"`
-	PageNo   int `json:"page_no" form:"page_no" query:"page_no"`
+	if pageNo < 1 {
+		pageNo = 1
+	}
+
+	if pageSize < 1 {
+		pageSize = -1
+	}
+
+	return pageNo, pageSize
 }
