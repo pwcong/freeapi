@@ -2,7 +2,7 @@
 
 免费实用的 API 接口。
 
-文档地址：[http://pwcong.github.io/freeapi](http://pwcong.github.io/freeapi)
+文档地址：[http://pwcong.github.io/freeapi/docs](http://pwcong.github.io/freeapi/docs)
 
 ## Techs
 
