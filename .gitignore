@@ -12,5 +12,6 @@
 *.out
 
 # Temp folders and files
+tmp
 public
 *.debug.*

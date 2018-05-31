@@ -23,7 +23,7 @@ port = 7001
 [databases]
 
     [databases.sqlite3]
-    dbpath = "db/freeapi.db"
+    dbpath = "db/freeapi.debug.db"
 `
 
 type Config struct {
