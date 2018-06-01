@@ -4,7 +4,7 @@ import (
 	"errors"
 
 	"github.com/labstack/echo"
-	"github.com/pwcong/freeapi/service"
+	"github.com/pwcong/freeapi/utils"
 )
 
 type CodeController struct {
@@ -12,13 +12,11 @@ type CodeController struct {
 }
 
 type CodeForm struct {
-	Method string `form:"method" query:"method"`
-	Source string `form:"source" query:"source"`
+	Method string `json:"method" form:"method"`
+	Source string `json:"source" form:"source"`
 }
 
-func (ctx *CodeController) Convert(c echo.Context) error {
-
-	service := service.CodeService{Base: ctx.Base.Service}
+func (ctx *CodeController) ConvertCoding(c echo.Context) error {
 
 	form := new(CodeForm)
 
@@ -29,32 +27,30 @@ func (ctx *CodeController) Convert(c echo.Context) error {
 	var res string
 	var err error
 
-	if form.Source == "" {
-		return errors.New("source can not be empty")
+	if form.Source == "" || form.Method == "" {
+		return errors.New("method and source can not be empty")
 	}
 
-	if form.Method == "ascii2unicode" {
-		res, err = service.ASCII2Unicode(form.Source)
-	} else if form.Method == "unicode2ascii" {
-		res, err = service.Unicode2ASCII(form.Source)
-	} else if form.Method == "unicode2chinese" {
-		res, err = service.Unicode2Chinese(form.Source)
-	} else if form.Method == "chinese2unicode" {
-		res, err = service.Chinese2Unicode(form.Source)
-	} else if form.Method == "uft8tochinese" {
-		res, err = service.UTF8ToChinese(form.Source)
-	} else if form.Method == "chinese2utf8" {
-		res, err = service.ChineseToUTF8(form.Source)
-	} else if form.Method == "urlencode" {
-		res, err = service.URLEncode(form.Source)
-	} else if form.Method == "urldecode" {
-		res, err = service.URLDecode(form.Source)
+	if form.Method == "unicode_encode" {
+		res, err = utils.UnicodeEncode(form.Source)
+	} else if form.Method == "unicode_decode" {
+		res, err = utils.UnicodeDecode(form.Source)
+	} else if form.Method == "url_encode" {
+		res, err = utils.URLEncode(form.Source)
+	} else if form.Method == "url_decode" {
+		res, err = utils.URLDecode(form.Source)
+	} else {
+		return errors.New("unknown convert method")
 	}
 
 	if err != nil {
 		return err
 	}
 
-	return BaseResponse(c, true, STATUS_OK, "convert successfully", res)
+	return BaseResponse(c, true, STATUS_OK, "convert successfully", struct {
+		Result string `json:"result"`
+	}{
+		Result: res,
+	})
 
 }

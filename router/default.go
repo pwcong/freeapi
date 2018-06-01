@@ -19,10 +19,21 @@ func Init(e *echo.Echo, conf *config.Config, db *gorm.DB) {
 
 	attachmentController := &controller.AttachmentController{Base: baseController}
 	areaController := &controller.AreaController{Base: baseController}
+	codeController := &controller.CodeController{Base: baseController}
+	mathController := &controller.MathController{Base: baseController}
 
 	apiGroup := e.Group("/api")
+
+	// 附件接口
 	apiGroup.POST("/attachment/upload", attachmentController.Upload)
+
+	// 地域接口
 	apiGroup.GET("/area/:id", areaController.GetAreaByID)
 	apiGroup.GET("/areas", areaController.GetAreas)
 
+	// 编码接口
+	apiGroup.POST("/code/convert/coding", codeController.ConvertCoding)
+
+	// 数学接口
+	apiGroup.POST("/math/convert/hexadecimal", mathController.ConvertHexadecimal)
 }
