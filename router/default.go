@@ -26,6 +26,7 @@ func Init(e *echo.Echo, conf *config.Config, db *gorm.DB) {
 
 	// 附件接口
 	apiGroup.POST("/attachment/upload", attachmentController.Upload)
+	apiGroup.POST("/attachment/uploads", attachmentController.Uploads)
 
 	// 地域接口
 	apiGroup.GET("/area/:id", areaController.GetAreaByID)

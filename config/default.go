@@ -66,7 +66,7 @@ func Initialize() (Config, error) {
 
 	rootDir := utils.GetRootDir()
 
-	_, err := toml.DecodeFile(filepath.Join(rootDir, "config/default.toml"), &conf)
+	_, err := toml.DecodeFile(filepath.Join(rootDir, "config/freeapi.toml"), &conf)
 
 	if err == nil {
 

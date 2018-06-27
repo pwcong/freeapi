@@ -15,7 +15,7 @@ func (ctx *AttachmentController) Upload(c echo.Context) error {
 
 	file, err := c.FormFile("file")
 	if file == nil || err != nil {
-		return BaseResponse(c, false, STATUS_ERROR, err.Error(), struct{}{})
+		return err
 	}
 
 	res, err := service.SaveAttachment(file)
@@ -28,6 +28,37 @@ func (ctx *AttachmentController) Upload(c echo.Context) error {
 		URL string `json:"url"`
 	}{
 		URL: "/public/attachment/" + res.Year + "/" + res.Month + "/" + res.Date + "/" + res.Symbol + "." + res.ExtName,
+	})
+
+}
+
+func (ctx *AttachmentController) Uploads(c echo.Context) error {
+
+	service := service.AttachmentService{Base: ctx.Base.Service}
+
+	form, err := c.MultipartForm()
+	if err != nil {
+		return err
+	}
+
+	files := form.File["files"]
+
+	var urls []string
+
+	for _, file := range files {
+
+		res, err := service.SaveAttachment(file)
+
+		if err == nil {
+			urls = append(urls, "/public/attachment/"+res.Year+"/"+res.Month+"/"+res.Date+"/"+res.Symbol+"."+res.ExtName)
+		}
+
+	}
+
+	return BaseResponse(c, true, STATUS_OK, "upload successfully", struct {
+		URLS []string `json:"urls"`
+	}{
+		URLS: urls,
 	})
 
 }

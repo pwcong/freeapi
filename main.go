@@ -56,7 +56,7 @@ func main() {
 
 	// 全局错误处理
 	e.HTTPErrorHandler = func(err error, c echo.Context) {
-		c.JSON(http.StatusOK, controller.BaseResponseJSON{
+		c.JSON(http.StatusBadRequest, controller.BaseResponseJSON{
 			Success: false,
 			Code:    controller.STATUS_ERROR,
 			Message: "url=" + c.Request().RequestURI + ", error=" + err.Error(),
