@@ -1,8 +1,9 @@
 package service
 
 import (
+	"freeapi/config"
+
 	"github.com/jinzhu/gorm"
-	"github.com/pwcong/freeapi/config"
 )
 
 type BaseService struct {

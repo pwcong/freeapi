@@ -3,9 +3,10 @@ package controller
 import (
 	"strconv"
 
-	"github.com/labstack/echo"
-	"github.com/pwcong/freeapi/model"
-	"github.com/pwcong/freeapi/service"
+	"freeapi/model"
+	"freeapi/service"
+
+	"github.com/labstack/echo/v4"
 )
 
 type AreaController struct {

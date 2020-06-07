@@ -6,15 +6,16 @@ import (
 	"path"
 	"strconv"
 
+	"freeapi/config"
+	"freeapi/controller"
+	"freeapi/db"
+	"freeapi/middleware"
+	"freeapi/model"
+	"freeapi/router"
+	"freeapi/utils"
+
 	"github.com/jinzhu/gorm"
-	"github.com/labstack/echo"
-	"github.com/pwcong/freeapi/config"
-	"github.com/pwcong/freeapi/controller"
-	"github.com/pwcong/freeapi/db"
-	"github.com/pwcong/freeapi/middleware"
-	"github.com/pwcong/freeapi/model"
-	"github.com/pwcong/freeapi/router"
-	"github.com/pwcong/freeapi/utils"
+	"github.com/labstack/echo/v4"
 )
 
 func initMiddlewares(e *echo.Echo, conf *config.Config) {

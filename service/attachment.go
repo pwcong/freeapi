@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/pwcong/freeapi/model"
-	"github.com/pwcong/freeapi/utils"
+	"freeapi/model"
+	"freeapi/utils"
 )
 
 type AttachmentService struct {

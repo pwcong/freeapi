@@ -15,3 +15,6 @@
 tmp
 public
 *.debug.*
+
+# Ignore custom files
+freeapi

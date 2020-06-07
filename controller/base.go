@@ -3,9 +3,10 @@ package controller
 import (
 	"net/http"
 
-	"github.com/labstack/echo"
-	"github.com/pwcong/freeapi/config"
-	"github.com/pwcong/freeapi/service"
+	"freeapi/config"
+	"freeapi/service"
+
+	"github.com/labstack/echo/v4"
 )
 
 const (

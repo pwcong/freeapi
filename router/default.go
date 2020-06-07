@@ -1,18 +1,19 @@
 package router
 
 import (
+	"freeapi/config"
+	"freeapi/controller"
+	"freeapi/service"
+
 	"github.com/jinzhu/gorm"
-	"github.com/labstack/echo"
-	"github.com/pwcong/freeapi/config"
-	"github.com/pwcong/freeapi/controller"
-	"github.com/pwcong/freeapi/service"
+	"github.com/labstack/echo/v4"
 )
 
 func Init(e *echo.Echo, conf *config.Config, db *gorm.DB) {
 
 	e.Static("/", "view/dist")
 	e.Static("/public", "public")
-	e.Static("/doc", "doc")
+	e.Static("/docs", "docs")
 
 	baseService := &service.BaseService{Conf: conf, DB: db}
 	baseController := &controller.BaseController{Conf: conf, Service: baseService}

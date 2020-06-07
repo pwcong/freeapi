@@ -4,8 +4,9 @@ import (
 	"log"
 	"path/filepath"
 
+	"freeapi/utils"
+
 	"github.com/BurntSushi/toml"
-	"github.com/pwcong/freeapi/utils"
 )
 
 const DEFAULT_CONFIG = `

@@ -3,8 +3,9 @@ package controller
 import (
 	"errors"
 
-	"github.com/labstack/echo"
-	"github.com/pwcong/freeapi/utils"
+	"freeapi/utils"
+
+	"github.com/labstack/echo/v4"
 )
 
 type CodeController struct {

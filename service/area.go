@@ -3,7 +3,7 @@ package service
 import (
 	"errors"
 
-	"github.com/pwcong/freeapi/model"
+	"freeapi/model"
 )
 
 type AreaService struct {

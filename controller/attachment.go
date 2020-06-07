@@ -1,8 +1,9 @@
 package controller
 
 import (
-	"github.com/labstack/echo"
-	"github.com/pwcong/freeapi/service"
+	"freeapi/service"
+
+	"github.com/labstack/echo/v4"
 )
 
 type AttachmentController struct {
